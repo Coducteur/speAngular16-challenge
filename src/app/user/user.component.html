@@ -1,0 +1,46 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <label for="username">Username:
+            <input type="text" formControlName="username">
+        </label>
+    </fieldset>
+    <div formGroupName="credentials">
+        <fieldset>
+            <label for="email">email:
+                <input type="email" formControlName="email">
+            </label>
+        </fieldset>
+        <fieldset>
+            <label for="password">password:
+                <input type="password" formControlName="password">
+            </label>
+        </fieldset>
+    </div>
+    <div formGroupName="adress">
+        <fieldset>
+            <label for="rue">rue:
+                <input type="text" formControlName="rue">
+            </label>
+        </fieldset>
+        <fieldset>
+            <label for="cp">cp:
+                <input type="text" formControlName="cp">
+            </label>
+        </fieldset>
+        <fieldset>
+            <label for="ville">ville:
+                <input type="text" formControlName="ville">
+            </label>
+        </fieldset>
+    </div>
+    <button type="submit" [disabled]="!userForm.valid">inscription</button>
+</form>
+<div>
+    <p>{{userForm.value.username}}</p>
+    <p>{{userForm.value.credentials?.email}}</p>
+    <p>{{userForm.value.credentials?.password}}</p>
+    <p>{{userForm.value.adress?.cp}}</p>
+    <p>{{userForm.value.adress?.rue}}</p>
+    <p>{{userForm.value.adress?.ville}}</p>
+
+</div>

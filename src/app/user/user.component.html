@@ -2,17 +2,32 @@
     <fieldset>
         <label for="username">Username:
             <input type="text" formControlName="username">
+            <div *ngIf="userForm.controls['username'].errors && !userForm.controls['username'].pristine">
+                <div *ngIf="userForm.controls['username'].errors['required']">Ce champ est requis.</div>
+                <div *ngIf="userForm.controls['username'].errors['minlength']">trop court !</div>
+            </div>
         </label>
     </fieldset>
     <div formGroupName="credentials">
         <fieldset>
             <label for="email">email:
                 <input type="email" formControlName="email">
+                {{ userForm.get("credentials.email")?.errors?.['email'].rules }}
+                <div *ngIf="userForm.get('credentials.email')?.errors">
+                    <div *ngIf="userForm.get('credentials.email')?.errors?.['required']">email requis
+                    </div>
+                </div>
             </label>
         </fieldset>
         <fieldset>
             <label for="password">password:
                 <input type="password" formControlName="password">
+                {{ userForm.get("credentials.password")?.errors?.['password'].rules }}
+                <div *ngIf="userForm.get('credentials.password')?.errors">
+                    <div *ngIf="userForm.get('credentials.password')?.errors?.['required']">mot de passe requis
+                    </div>
+
+                </div>
             </label>
         </fieldset>
     </div>
